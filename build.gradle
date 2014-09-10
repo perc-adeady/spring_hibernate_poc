@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+archivesBaseName = 'Concretepage'
+version = '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+    maven {
+        url "http://ccdp01.pvi.com:8081/artifactory/production-external-thirdparty"
+
+    }
+    maven {
+        url "http://devrepositoryd00.pvi.com:8181/content/FOSS_External"
+    }
+
+    maven { url 'http://maven.restlet.org' }
+}
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.concretepage.Spring4Hibernate4Test'
+    }
+}
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.1.4.RELEASE'
+    compile 'org.hibernate:hibernate-core:4.3.6.Final'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile 'org.javassist:javassist:3.15.0-GA'
+    compile 'mysql:mysql-connector-java:5.1.31'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    runtime(group: 'postgresql', name: 'postgresql', version: '9.2-1002-jdbc4')
+}
+sourceSets.main.runtimeClasspath += files("src/main/resources") // OR: files("src/main/java")

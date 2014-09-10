@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven'
 archivesBaseName = 'Concretepage'
 version = '1.0-SNAPSHOT'
 repositories {
@@ -19,6 +20,10 @@ jar {
         attributes 'Main-Class': 'com.concretepage.Spring4Hibernate4Test'
     }
 }
+
+group = 'myGroup'
+version = '0.1-SNAPSHOT'
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.1.4.RELEASE'
     compile 'org.hibernate:hibernate-core:4.3.6.Final'
@@ -27,6 +32,6 @@ dependencies {
     compile 'org.javassist:javassist:3.15.0-GA'
     compile 'mysql:mysql-connector-java:5.1.31'
     compile 'commons-dbcp:commons-dbcp:1.4'
-    runtime(group: 'postgresql', name: 'postgresql', version: '9.2-1002-jdbc4')
+    runtime(group: 'org.postgresql', name: 'postgresql', version: '9.2-1002-jdbc4')
 }
 sourceSets.main.runtimeClasspath += files("src/main/resources") // OR: files("src/main/java")

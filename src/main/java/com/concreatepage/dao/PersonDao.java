@@ -11,12 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class PersonDao {
 
     @Autowired
-    SessionFactory _sessionFactory;
+    SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
     public void savePerson() {
         Person person = new Person();
         person.setId(1);
         person.setName("Ram");
-        _sessionFactory.getCurrentSession().save(person);
+        sessionFactory.getCurrentSession().save(person);
     }
 }

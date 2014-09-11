@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin:'application'
+apply plugin:'groovy'
 archivesBaseName = 'Concretepage'
 version = '1.0-SNAPSHOT'
 repositories {
@@ -27,6 +28,7 @@ version = '0.1-SNAPSHOT'
 mainClassName = "com.concreatepage.Spring4Hibernate4Test"
 
 dependencies {
+    compile(group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.1.0')
     compile(group: 'org.springframework', name: 'spring-context', version: '4.0.7.RELEASE')
     compile(group: 'org.springframework', name: 'spring-orm', version: '4.0.7.RELEASE')
     compile 'org.hibernate:hibernate-core:4.3.6.Final'
@@ -36,4 +38,3 @@ dependencies {
     compile 'commons-dbcp:commons-dbcp:1.4'
     runtime(group: 'org.postgresql', name: 'postgresql', version: '9.2-1002-jdbc4')
 }
-sourceSets.main.runtimeClasspath += files("src/main/resources") // OR: files("src/main/java")

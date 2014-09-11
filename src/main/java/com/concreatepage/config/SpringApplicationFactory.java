@@ -2,6 +2,9 @@ package com.concreatepage.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.support.GenericGroovyApplicationContext;
 
 /**
  * Singleton responsible for initializing the Spring application context.  Provides
@@ -12,7 +15,8 @@ final public class SpringApplicationFactory
     private static SpringApplicationFactory _instance;
 
 
-    private transient AnnotationConfigApplicationContext _ctx;
+//    private transient AnnotationConfigApplicationContext _ctx;
+    private transient GenericApplicationContext _ctx;
 
     private SpringApplicationFactory()
     {
@@ -32,9 +36,11 @@ final public class SpringApplicationFactory
 
     private void init()
     {
-        _ctx = new AnnotationConfigApplicationContext();
-        _ctx.register(AppConfig.class);
-        _ctx.refresh();
+        _ctx = new GenericGroovyApplicationContext("classpath:/config.groovy");
+        new ClassPathBeanDefinitionScanner(_ctx).scan("com.concretepage");
+//        _ctx = new AnnotationConfigApplicationContext();
+//        _ctx.register(AppConfig.class);
+//        _ctx.refresh();
     }
 
     /**
